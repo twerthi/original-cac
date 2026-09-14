@@ -12,3 +12,18 @@ step "run-a-script" {
         worker_pool = "database-worker-pool"
     }
 }
+
+step "run-a-script-from-git" {
+    name = "Run a Script from git"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.GitRepository.Source = "Project"
+            Octopus.Action.Script.ScriptFileName = "test1.ps1"
+            Octopus.Action.Script.ScriptSource = "GitRepository"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "kubernetes-worker-pool"
+    }
+}
